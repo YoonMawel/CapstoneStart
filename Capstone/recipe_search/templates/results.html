@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>검색 결과</title>
+</head>
+<body>
+    <div class="container">
+        <h1>추천 레시피</h1>
+        {% if recipes.empty %}
+            <p>해당 재료로 만들 수 있는 레시피가 없습니다.</p>
+        {% else %}
+            <ul>
+                {% for index, row in recipes.iterrows() %}
+                    <li>
+                        <strong>추천 메뉴:</strong> {{ row['Menu name'] }}<br>
+                        <strong>조리 방법:</strong> {{ row['instructions'] }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <a href="/">다시 검색하기</a>
+    </div>
+</body>
+</html>
